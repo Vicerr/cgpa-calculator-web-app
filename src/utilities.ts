@@ -9,7 +9,7 @@ export const gradePointMap: Record<string, number> = {
 export function calculateGradePoint(grade: string, load: number): number {
     return load * (gradePointMap[grade.toUpperCase()] ?? 0)
 }
-// 📁 utilities.ts
+//
 export function calculateGPA(courses: { courseLoad: number; grade: string }[]): number {
     const { totalPoints, totalLoad } = courses.reduce(
         (acc, course) => {

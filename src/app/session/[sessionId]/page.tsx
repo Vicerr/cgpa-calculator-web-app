@@ -2,6 +2,7 @@ import ResultsTable from "@/components/resultTable"
 import { calculateGPA, calculateGradePoint } from "@/utilities"
 import { notFound } from "next/navigation"
 import { TableRowProps } from "@/components/tableRow"
+import Modal from "@/components/modal"
 
 export default async function Session({ params }: { params: Promise<{ sessionId: number }> }) {
     const { sessionId } = await params
@@ -46,12 +47,13 @@ export default async function Session({ params }: { params: Promise<{ sessionId:
     const sessionCGPA = calculateGPA([...firstSemesterCourses, ...secondSemesterCourses])
 
     return (
-        <>
+        <section className="relative">
             <p>
                 Session CGPA: <strong>{sessionCGPA}</strong>
             </p>
+            <Modal initialIsOpen={false} />
             <ResultsTable level={level} gpa={firstSemesterGPA} title="First" courses={firstSemesterCourses} />
             <ResultsTable level={level} gpa={secondSemesterGPA} title="Second" courses={secondSemesterCourses} />
-        </>
+        </section>
     )
 }
